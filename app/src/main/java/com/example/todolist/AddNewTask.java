@@ -56,13 +56,14 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
         boolean isUpdate = false;
         final Bundle bundle = getArguments();
-        if(bundle != null){
+        if(bundle != null) {
             isUpdate = true;
             String task = bundle.getString("task");
             newTaskText.setText(task);
-            if(task.length()>0){
-                newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(),R.color.colorPrimaryDark));
+            if (task.length() > 0) {
+                newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
             }
+        }
             newTaskText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -71,7 +72,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if(toString().toString().equals("")){
+                    if(charSequence.toString().equals("")){
                         newTaskSaveButton.setEnabled(false);
                         newTaskSaveButton.setTextColor(Color.GRAY);
                     } else {
@@ -97,12 +98,13 @@ public class AddNewTask extends BottomSheetDialogFragment {
                         ToDoModel task = new ToDoModel();
                         task.setTask(text);
                         task.setStatus(0);
+                        db.insertTask(task);
                     }
                     dismiss();
                 }
             });
         }
-    }
+
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {

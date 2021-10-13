@@ -1,5 +1,6 @@
 package com.example.todolist.adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         fragment.show(activity.getSupportFragmentManager(),AddNewTask.TAG);
     }
 
+    public Context getContext(){
+        return activity;
+    }
     @Override
     public int getItemCount() {
         return toDoList.size();
